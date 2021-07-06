@@ -43,4 +43,22 @@ public class ProductsService {
     public List<Products> findByName(String name) {
         return productsRepo.findByNameContains(name);
     }
+
+    public Products update(Long id, Products products) {
+        Optional<Products> productsData = productsRepo.findById(id);
+
+        if (!productsData.isPresent()) {
+            return null;
+        }
+
+        Products _products = productsData.get();
+
+        _products.setName(products.getName());
+        _products.setDescription(products.getDescription());
+        _products.setPrice(products.getPrice());
+        _products.setQuantity(products.getQuantity());
+
+        return productsRepo.save(_products);
+    }
+
 }

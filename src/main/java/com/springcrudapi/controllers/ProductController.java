@@ -35,9 +35,9 @@ public class ProductController {
         return productService.findById(id);
     }
 
-    @PutMapping
-    public Products update(@RequestBody Products products) {
-        return productService.save(products);
+    @PutMapping("/{id}")
+    public Products update(@PathVariable("id") Long id, @RequestBody Products products) {
+        return productService.update(id, products);
     }
 
     @DeleteMapping("/{id}")
